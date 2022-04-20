@@ -18,7 +18,7 @@ combination. We plot the results in a heat map
 import matplotlib as mpl
 mpl.use('Agg')
 from matplotlib import pyplot as plt
-from api import State, util
+from api import State, util,Deck
 
 import random
 
@@ -32,14 +32,15 @@ class Bot:
         self.__non_trump_move = non_trump_move
 
     def get_move(self, state):
-
+        moves = state.moves()
         if random.random() < self.__non_trump_move:
 
             # IMPLEMENT: Make the best non-trump move you can. Use the best_non_trump_card method written below.
-            pass
-
+            best_card=best_non_trump_card(state)
+            return best_card
+            
         #IMPLEMENT: Make a random move (but exclude the best non-trump move from above)
-        pass
+        return random.choice([move for move in moves if move!=best_non_trump_card(state) or len(moves)==1])
 
 
 def empty(n):

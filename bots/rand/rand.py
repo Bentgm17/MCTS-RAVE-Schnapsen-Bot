@@ -30,6 +30,5 @@ class Bot:
         # All legal moves
         moves = state.moves()
 
-
         # Return a random choice
         return random.choice(moves)

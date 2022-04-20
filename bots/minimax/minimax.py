@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 """
-
-
 """
 
 from api import State, util
@@ -22,11 +20,12 @@ class Bot:
 
     def get_move(self, state):
         # type: (State) -> tuple[int, int]
-
+    
         val, move = self.value(state)
 
         return move
-
+    
+    
     def value(self, state, depth = 0):
         # type: (State, int) -> tuple[float, tuple[int, int]]
         """
@@ -54,10 +53,11 @@ class Bot:
         for move in moves:
 
             next_state = state.next(move)
+            
 
             # IMPLEMENT: Add a recursive function call so that 'value' will contain the
             # minimax value of 'next_state'
-            value ???
+            value=self.value(next_state,depth=2)[0]
 
             if maximizing(state):
                 if value > best_value:
@@ -68,6 +68,7 @@ class Bot:
                     best_value = value
                     best_move = move
 
+        
         return best_value, best_move
 
 def maximizing(state):
